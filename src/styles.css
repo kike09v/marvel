@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+body{
+    background: #f2f2f2;
+}
+
+.navbar-dark .navbar-nav .nav-link.active{
+    color: #ff3333 !important;
+}
+
+.textColor{
+    color: #ff3333;
+}
+
+.decorationLink{
+    text-decoration: none;
+    color: #ff3333;
+}
+
+.decorationLink:hover{
+    color: #cc0000;
+}
+

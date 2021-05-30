@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  hash: '9a08567461c13cb4cb1dc5fdaae93e76',
+  apikey: 'e4fedc667715bb084455e3828b6deb84',
+  urlApi: 'https://gateway.marvel.com/v1/public/'
 };
 
 /*
@@ -14,3 +17,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
