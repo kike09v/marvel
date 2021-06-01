@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ComicsService } from '../../services/comics.service';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-comics',
@@ -12,7 +14,10 @@ export class ComicsComponent implements OnInit {
   allComics: Observable<any>;
   loading: boolean;
 
-  constructor(private comicsService:ComicsService) {
+  constructor(
+    private comicsService:ComicsService,
+    private router:Router
+    ) {
     this.loading = true;
    }
 
@@ -26,6 +31,10 @@ export class ComicsComponent implements OnInit {
       console.log(this.allComics);
       this.loading = false;
     });    
+  }
+
+  viewDetail(id: string){
+    this.router.navigate(['/comics', id]);    
   }
 
 }

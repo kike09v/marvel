@@ -1,1 +1,80 @@
-<p>comics-detail works!</p>
+<app-loading *ngIf="loading"></app-loading>
+
+<section *ngIf="!loading">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{comics['title']}}</h1>
+      </div>
+      <div class="col-sm-6 d-flex justify-content-end">
+        <nav
+          style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+          aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="decorationLink" [routerLink]="['']">Home</a></li>
+            <li class="breadcrumb-item"><a class="decorationLink" [routerLink]="['/comics']">Comics</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detail comics</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+
+    <div class="col-md-4">
+
+      <img class="img-fluid" src="{{comics['thumbnail']['path']}}.{{comics['thumbnail']['extension']}}">
+
+      <br><br>
+    </div>
+
+
+    <div class="col-md-8">
+      <h3 class="textColor">Description</h3>
+      <hr>
+      <p class="text">
+        {{comics['description']}}
+      </p>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <h3 class="textColor">Character appearing</h3>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let character of comicsCharacters">
+
+        <div class="card">
+          <img class="card-img-top" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}">
+
+          <div class="card-body">
+            <h5 class="card-title text-center">{{character.name}}</h5>
+          </div>
+
+          <div class="card text-end p-2">
+            <button (click)="viewDetailCharacter(character.id)" type="button" class="btn btn-outline-primary btn-block">
+              Detail character
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="col-12">
+    <h3 class="textColor">Creators of comics</h3>
+    <hr>
+
+    <div class="card" style="width: 18rem;">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let creator of comicsCreators">{{creator.fullName}}</li>
+      </ul>
+    </div>
+  </div>
+
+</section>

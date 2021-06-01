@@ -19,4 +19,16 @@ export class CreatorsService {
     return this.http.get<any>(`${this.BASE_URL}/creators${this.HEADER}`);
   }
 
+  getCreator(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/creators/${id}${this.HEADER}`);
+  }
+
+  getCreatorComics(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/creators/${id}/comics${this.HEADER}`);
+  }
+
+  getCreatorSeries(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/creators/${id}/series${this.HEADER}`);
+  }
+
 }

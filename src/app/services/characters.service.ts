@@ -24,5 +24,12 @@ export class CharactersService {
     return this.http.get<any>(`${this.BASE_URL}/characters/${id}${this.HEADER}`);
   }
 
+  getComicsCharacter(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/characters/${id}/comics${this.HEADER}`);
+  }
+
+  getseriesCharacter(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/characters/${id}/series${this.HEADER}`);
+  }
 
 }

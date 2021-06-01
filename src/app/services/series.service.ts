@@ -19,4 +19,20 @@ export class SeriesService {
     return this.http.get<any>(`${this.BASE_URL}/series${this.HEADER}`);
   }
 
+  getSerie(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/series/${id}${this.HEADER}`);
+  }
+
+  getSerieCharacters(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/series/${id}/character${this.HEADER}`);
+  }
+
+  getSerieComics(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/series/${id}/comics${this.HEADER}`);
+  }
+
+  getSerieCreators(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/series/${id}/creators${this.HEADER}`);
+  }
+
 }

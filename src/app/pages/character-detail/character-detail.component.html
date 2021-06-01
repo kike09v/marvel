@@ -20,17 +20,17 @@
     </div>
   </div>
   <hr>
-  
+
   <div class="row">
-  
+
     <div class="col-md-4">
-  
+
       <img class="img-fluid" src="{{character['thumbnail']['path']}}.{{character['thumbnail']['extension']}}">
-  
+
       <br><br>
     </div>
-  
-  
+
+
     <div class="col-md-8">
       <h3 class="textColor">Description</h3>
       <hr>
@@ -38,55 +38,96 @@
         {{character['description']}}
       </p>
     </div>
-  
+
     <div class="col-12">
       <h3 class="textColor">Comics where it appears</h3>
       <hr>
-  
+
       <div class="row">
-        <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let comics of character['comics']['items']">
-  
+        <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let comics of comicsCharacter">
+
           <div class="card">
+            <img class="card-img-top" src="{{comics.thumbnail.path}}.{{comics.thumbnail.extension}}">
+
             <div class="card-body">
-              <h5 class="card-title">{{comics.name}}</h5>
-              <div class="card text-end">
-                <button (click)="viewDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
-                  Detail
-                </button>
-              </div>
+              <h5 class="card-title text-center">{{comics.title}}</h5>
+            </div>
+
+            <ul class="list-group list-group-flush">
+
+              <span *ngFor="let creator of comics.creators.items; index as i">
+                <li class="list-group-item" *ngIf="creator.role == 'writer'">
+                  Writer: {{creator.name}}
+                </li>
+              </span>
+
+              <li class="list-group-item">Price: {{comics.prices[0].price}}$</li>
+            </ul>
+
+            <div class="card text-end p-2">
+              <button (click)="viewDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
+                Detail
+              </button>
             </div>
           </div>
-  
         </div>
       </div>
-  
+
     </div>
-  
+
     <div class="col-12">
       <h3 class="textColor">Series where it appears</h3>
       <hr>
-  
+
       <div class="row">
-        <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let serie of character['series']['items']">
-  
+        <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let serie of seriesCharacter">
+
           <div class="card">
+            <img class="card-img-top" src="{{serie.thumbnail.path}}.{{serie.thumbnail.extension}}">
             <div class="card-body">
-              <h5 class="card-title">{{serie.name}}</h5>
-              <div class="card text-end">
-                <button (click)="viewDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
-                  Detail
-                </button>
-              </div>
+              <h5 class="card-title text-center">{{serie.title}}</h5>
+            </div>
+
+            <ul class="list-group list-group-flush">
+
+              <li class="list-group-item">
+                Año de inicio: {{serie.startYear}}
+              </li>
+
+              <li class="list-group-item">
+                Año de finalizacion: {{serie.endYear}}
+              </li>
+
+              <li class="list-group-item">
+                <span *ngIf="serie.type === ''">
+                  Calificacion: No disponible
+                </span>
+                <span *ngIf="serie.type !== ''">
+                  Tipo: {{serie.type}}
+                </span>
+              </li>
+
+              <li class="list-group-item">
+                <span *ngIf="serie.rating === ''">
+                  Calificacion: No disponible
+                </span>
+                <span *ngIf="serie.rating !== ''">
+                  Calificacion: {{serie.rating}}
+                </span>
+              </li>
+            </ul>
+
+            <div class="card text-end p-2">
+              <button (click)="viewDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
+                Detail
+              </button>
             </div>
           </div>
-  
         </div>
+
       </div>
-  
     </div>
-    
-  
-  </div>  
+
+  </div>
 
 </section>
-

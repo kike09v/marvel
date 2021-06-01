@@ -18,6 +18,19 @@ export class ComicsService {
   getAllComics():Observable<any>{
     return this.http.get<any>(`${this.BASE_URL}/comics${this.HEADER}`);
   }
+
+  getComics(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/comics/${id}${this.HEADER}`);
+  }
+
+  getComicsCharacters(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/comics/${id}/characters${this.HEADER}`);
+  }
+
+  getComicsCreators(id: string):Observable<any>{
+    return this.http.get<any>(`${this.BASE_URL}/comics/${id}/creators${this.HEADER}`);
+  }
+
 }
 
 

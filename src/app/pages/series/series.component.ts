@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SeriesService } from '../../services/series.service';
 
@@ -13,7 +14,10 @@ export class SeriesComponent implements OnInit {
   allseries: Observable<any>;
   loading:boolean;
 
-  constructor(private seriesService:SeriesService) {
+  constructor(
+    private seriesService:SeriesService,
+    private router:Router
+    ) {
     this.loading = true;
    }
 
@@ -28,5 +32,10 @@ export class SeriesComponent implements OnInit {
       this.loading = false;
     });    
   }
+
+  viewDetail(id: string){
+    this.router.navigate(['/serie', id]);    
+  }
+
 
 }

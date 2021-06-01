@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { from, Observable } from 'rxjs';
 import { CharactersService } from '../../services/characters.service';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 
@@ -38,7 +38,7 @@ export class CharactersComponent implements OnInit {
   }
 
   viewDetail(id: string){
-    this.router.navigate(['/characters', id]);    
+    this.router.navigate(['/character', id]);    
   }
 
 
