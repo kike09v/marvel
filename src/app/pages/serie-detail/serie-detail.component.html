@@ -33,9 +33,14 @@
 
     <div class="col-md-8">
       <h3 class="textColor">Description</h3>
-      <hr>
+      <hr>      
       <p class="text">
-        {{serie['description']}}
+        <span *ngIf="serie['description'] === null">
+          Not available
+        </span>
+        <span *ngIf="serie['description'] !== null">
+          {{serie['description']}}
+        </span>
       </p>
     </div>
 
@@ -55,7 +60,7 @@
               </div>  
   
               <div class="card text-end p-2">
-                <button (click)="viewDetail(character.id)" type="button" class="btn btn-outline-primary btn-block">
+                <button (click)="viewCharacterDetail(character.id)" type="button" class="btn btn-outline-primary btn-block">
                   Detail
                 </button>
               </div>
@@ -79,7 +84,7 @@
               </div>  
   
               <div class="card text-end p-2">
-                <button (click)="viewDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
+                <button (click)="viewComicsDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
                   Detail
                 </button>
               </div>
@@ -103,7 +108,7 @@
               </div>  
   
               <div class="card text-end p-2">
-                <button (click)="viewDetail(creator.id)" type="button" class="btn btn-outline-primary btn-block">
+                <button (click)="viewCreatorDetail(creator.id)" type="button" class="btn btn-outline-primary btn-block">
                   Detail
                 </button>
               </div>

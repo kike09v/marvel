@@ -35,7 +35,12 @@
       <h3 class="textColor">Description</h3>
       <hr>
       <p class="text">
-        {{character['description']}}
+        <span *ngIf="character['description'] === ''">
+          Not available
+        </span>
+        <span *ngIf="character['description'] !== ''">
+          {{character['description']}}
+        </span>
       </p>
     </div>
 
@@ -65,7 +70,7 @@
             </ul>
 
             <div class="card text-end p-2">
-              <button (click)="viewDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
+              <button (click)="viewComicsDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
                 Detail
               </button>
             </div>
@@ -91,34 +96,34 @@
             <ul class="list-group list-group-flush">
 
               <li class="list-group-item">
-                Año de inicio: {{serie.startYear}}
+                Start Year: {{serie.startYear}}
               </li>
 
               <li class="list-group-item">
-                Año de finalizacion: {{serie.endYear}}
+                End Year: {{serie.endYear}}
               </li>
 
               <li class="list-group-item">
                 <span *ngIf="serie.type === ''">
-                  Calificacion: No disponible
+                  Type: No disponible
                 </span>
                 <span *ngIf="serie.type !== ''">
-                  Tipo: {{serie.type}}
+                  Type: {{serie.type}}
                 </span>
               </li>
 
               <li class="list-group-item">
                 <span *ngIf="serie.rating === ''">
-                  Calificacion: No disponible
+                  Rating: No disponible
                 </span>
                 <span *ngIf="serie.rating !== ''">
-                  Calificacion: {{serie.rating}}
+                  Rating: {{serie.rating}}
                 </span>
               </li>
             </ul>
 
             <div class="card text-end p-2">
-              <button (click)="viewDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
+              <button (click)="viewSerieDetail(serie.id)" type="button" class="btn btn-outline-primary btn-block">
                 Detail
               </button>
             </div>

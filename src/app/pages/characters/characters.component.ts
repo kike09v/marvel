@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 })
 export class CharactersComponent implements OnInit {
 
-  allCharacters: Observable<any>;
   loading: boolean;
   offten: number = 0;
   name:string = '';
   search:string = '';
+  allCharacters: Observable<any>;
 
   constructor(
     private charactersService:CharactersService,
@@ -29,30 +29,28 @@ export class CharactersComponent implements OnInit {
     this.getAllCharacters(this.offten, this.name);
   }
   
-  getAllCharacters(offten, name){
-    
+  // Funcion que trae todos los personajes
+  getAllCharacters(offten, name){    
     this.charactersService.getAllCharacters(offten, name).subscribe(data =>{
-      this.allCharacters = (data as any).data.results;
-      console.log(this.allCharacters);      
+      this.allCharacters = (data as any).data.results;    
       this.loading = false;
     });    
-
   }
 
+  // Funcion que envia al detella de un personaje
   viewDetail(id: string){
     this.router.navigate(['/character', id]);    
   }
 
+  // funcion de paginado (Next)
   offtenNext(){
-
     this.loading = true;
     this.offten += 20;
     this.getAllCharacters(this.offten, this.name);
-    this.loading = false;
-
-    
+    this.loading = false;    
   }
 
+  // funcion de paginado (Previous)
   offtenPrevious(){
     if (this.offten > 0) {
       this.loading = true;
@@ -62,11 +60,11 @@ export class CharactersComponent implements OnInit {
     }    
   }
 
+  // Funcion de busqueda dinamica
   onSearchCharacter(search:string){
     this.offten = 0;
     this.search = search;
     this.getAllCharacters(this.offten, this.search);    
   }
-
 
 }

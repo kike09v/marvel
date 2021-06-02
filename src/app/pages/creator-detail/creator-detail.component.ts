@@ -35,38 +35,36 @@ export class CreatorDetailComponent implements OnInit {
     this.getCreatorSeries(this.id);
   }
 
-
+  // Funcion que trae a un creador en especifico
   getCreator(id:string){
     this.creatorsService.getCreator(id).subscribe(data =>{
       this.creator = (data as any).data.results[0];  
-      console.log(this.creator);
-            
       this.loading = false;            
-    });     
-
+    });    
   }
 
+  // Funcion que trae todos los comics de un creador en especifico
   getCreatorComics(id:string){
     this.creatorsService.getCreatorComics(id).subscribe(data =>{
-      this.creatorComics = (data as any).data.results; 
-      console.log(this.creatorComics);
-          
+      this.creatorComics = (data as any).data.results;           
     }); 
   }
 
+  // Funcion que trae todas las series de un creador en especifico
   getCreatorSeries(id:string){
     this.creatorsService.getCreatorSeries(id).subscribe(data =>{
       this.CreatorSeries = (data as any).data.results; 
-      console.log(this.CreatorSeries);
-          
     }); 
   }
 
+  // funcion que envia al detalle de comics
   viewComicsDetail(id: string){
     this.router.navigate(['/comics', id]);    
   }
 
-
-
+  // funcion que envia al detalle de una serie
+  viewSerieDetail(id:string){
+    this.router.navigate(['/serie', id]);    
+  }
 
 }

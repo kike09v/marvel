@@ -19,27 +19,88 @@
     </div>
   </div>
   <hr>
-  
+
+
+  <nav class="navbar">
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search character" aria-label="Search" #txtSearch
+        (keyup)="onSearchCharacter(txtSearch.value)">
+    </form>
+
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <button class="page-link" (click)="offtenPrevious()" [disabled]=" offten === 0">Previous</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="offtenNext()">Next</button>
+      </li>
+    </ul>
+  </nav>
+
+  <nav class="navbar">
+    <h2>Filter series by</h2>
+    <ul class="pagination justify-content-start">
+      <li class="page-item">
+        <button class="page-link" (click)="filterSerie('collection')">Collection</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="filterSerie('one%20shot')">One shot</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="filterSerie('limited')">Limited</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="filterSerie('ongoing')">Ongoing</button>
+      </li>
+    </ul>
+  </nav>
+
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let serie of allseries">
-  
+
         <div class="card">
           <img class="card-img-top" src="{{serie.thumbnail.path}}.{{serie.thumbnail.extension}}">
           <div class="card-body">
             <h5 class="card-title">{{serie.title}}</h5>
-            <!-- <p class="card-text">series where appear: {{serie.series.available}}</p> -->
-            <!-- <p class="card-text">series where series: {{serie.series.available}}</p> -->
-            <div class="card text-end">
-              <button (click)="viewDetail(serie.id)" type="button" class="btn btn-outline-primary btn-block">
-                Detail
-              </button>
-            </div>
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Start Year: {{serie.startYear}}</li>
+            <li class="list-group-item">End Year: {{serie.endYear}}</li>
+            <li class="list-group-item">Type: {{serie.type}}</li>
+            <li class="list-group-item">Rating: {{serie.rating}}</li>
+
+            <span *ngFor="let item of serie.creators.items">
+              <li class="list-group-item" *ngIf="item.role === 'writen'">
+                {{item.name}}, Role: {{item.role}}
+              </li>
+            </span>
+
+          </ul>
+
+
+          <div class="card text-end p-2">
+            <button (click)="viewDetail(serie.id)" type="button" class="btn btn-outline-primary btn-block">
+              Detail
+            </button>
           </div>
         </div>
-  
       </div>
+
     </div>
   </div>
-<P></P>  
+
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <button class="page-link" (click)="offtenPrevious()">Previous</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="offtenNext()">Next</button>
+      </li>
+    </ul>
+  </nav>
+
 </section>

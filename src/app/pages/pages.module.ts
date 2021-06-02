@@ -17,6 +17,7 @@ import { ComicsDetailComponent } from './comics-detail/comics-detail.component';
 import { CreatorDetailComponent } from './creator-detail/creator-detail.component';
 import { SerieDetailComponent } from './serie-detail/serie-detail.component';
 import { SearchComponent } from './search/search.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { SearchComponent } from './search/search.component';
     CreatorDetailComponent,
     SerieDetailComponent,
     SearchComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { SearchComponent } from './search/search.component';
     CharactersComponent,
     CreatorsComponent,
     SeriesComponent,
+    NotFoundComponent
   ]
 })
 export class PagesModule { }

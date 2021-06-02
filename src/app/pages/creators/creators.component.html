@@ -21,6 +21,22 @@
   <hr>
 
 
+  <nav class="navbar">
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search character" aria-label="Search" #txtSearch
+        (keyup)="onSearchCharacter(txtSearch.value)">
+    </form>
+
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <button class="page-link" (click)="offtenPrevious()" [disabled]=" offten === 0">Previous</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="offtenNext()">Next</button>
+      </li>
+    </ul>
+  </nav>
+
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let creator of allCreators">
@@ -28,11 +44,18 @@
         <div class="card">
           <img class="card-img-top" src="{{creator.thumbnail.path}}.{{creator.thumbnail.extension}}">
           <div class="card-body">
-            <h5 class="card-title">{{creator.firstName}}</h5>
-            <!-- <p class="card-text">creators where appear: {{creator.creators.available}}</p> -->
-            <!-- <p class="card-text">creators where series: {{creator.series.available}}</p> -->
+            <h5 class="card-title text-center">{{creator.firstName}}</h5>
+          </div>
+
+          <ul class="list-group list-group-flush">            
+
+            <li class="list-group-item">Comics participate: {{creator.comics.available}}</li>
+            <li class="list-group-item">Series participate: {{creator.series.available}}</li>
+
+          </ul>
+
             <div class="card text-end">
-              <button (click)="viewDetail(creator.id)" type="button" class="btn btn-outline-primary btn-block">
+              <button (click)="viewCreatorDetail(creator.id)" type="button" class="btn btn-outline-primary btn-block">
                 Detail
               </button>
             </div>
@@ -41,6 +64,16 @@
 
       </div>
     </div>
-  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <button class="page-link" (click)="offtenPrevious()">Previous</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="offtenNext()">Next</button>
+      </li>
+    </ul>
+  </nav>
 
 </section>

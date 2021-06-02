@@ -15,22 +15,40 @@ export class ComicsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllComics(offset:string, name:string):Observable<any>{
-    if (name === '') {
+  // Endpoint para traer todos los comics
+  getAllComics(offset:string, name:string, order:string):Observable<any>{    
+    if (name == '' && order =='') {
     return this.http.get<any>(`${this.BASE_URL}/comics${this.HEADER}&limit=20&offset=${offset}`);      
-    } else {
-    return this.http.get<any>(`${this.BASE_URL}/comics${this.HEADER}&titleStartsWith=${name}&limit=20&offset=${offset}`);      
+    } 
+    
+    if(name == '' && order == 'focDate'){
+      return this.http.get<any>(`${this.BASE_URL}/comics${this.HEADER}&limit=20&offset=${offset}&orderBy=focDate`); 
+    }
+    
+    if(name == '' && order == 'onsaleDate'){
+      return this.http.get<any>(`${this.BASE_URL}/comics${this.HEADER}&limit=20&offset=${offset}&orderBy=onsaleDate`); 
+    }
+    
+    if(name != '' && order == ''){
+      return this.http.get<any>(`${this.BASE_URL}/comics${this.HEADER}&titleStartsWith=${name}&limit=20&offset=${offset}`);  
+    }
+    
+    else{      
+      return this.http.get<any>(`${this.BASE_URL}/comics${this.HEADER}&limit=20&offset=${offset}`); 
     }
   }
 
+  // Endpoint para un comics en especifico
   getComics(id: string):Observable<any>{
     return this.http.get<any>(`${this.BASE_URL}/comics/${id}${this.HEADER}`);
   }
 
+  // Endpoint para traer todos los personajes de un comics en especifico
   getComicsCharacters(id: string):Observable<any>{
     return this.http.get<any>(`${this.BASE_URL}/comics/${id}/characters${this.HEADER}`);
   }
 
+  // Endpoint para traer todos los creadores de un comics en especifico
   getComicsCreators(id: string):Observable<any>{
     return this.http.get<any>(`${this.BASE_URL}/comics/${id}/creators${this.HEADER}`);
   }

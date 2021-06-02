@@ -16,6 +16,7 @@ export class CharactersService {
   
   constructor(private http: HttpClient) { }
 
+  // Endpoint para traer todos los personajes
   getAllCharacters(offset:string, name:string):Observable<any>{
     if (name === '') {      
       return this.http.get<any>(`${this.BASE_URL}/characters${this.HEADER}&limit=20&offset=${offset}`);
@@ -24,14 +25,17 @@ export class CharactersService {
     }
   }
 
+  // Endpoint para traer un personaje en especifico
   getCharacter(id: string):Observable<any>{
     return this.http.get<any>(`${this.BASE_URL}/characters/${id}${this.HEADER}`);
   }
 
+  // Endpoint para traer todos los comics de un personaje especifico
   getComicsCharacter(id: string):Observable<any>{
     return this.http.get<any>(`${this.BASE_URL}/characters/${id}/comics${this.HEADER}`);
   }
 
+  // Endpoint para traer todas las series de un personaje especifico
   getseriesCharacter(id: string):Observable<any>{
     return this.http.get<any>(`${this.BASE_URL}/characters/${id}/series${this.HEADER}`);
   }

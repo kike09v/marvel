@@ -15,6 +15,7 @@ export class CreatorsService {
 
   constructor(private http: HttpClient) { }
 
+  // Endpoint de todos los creadores
   getAllCreators(offset:string, name:string):Observable<any>{
     if (name === '') {
       return this.http.get<any>(`${this.BASE_URL}/creators${this.HEADER}&limit=20&offset=${offset}`);
@@ -24,14 +25,17 @@ export class CreatorsService {
     }
   }
 
+  // Endpoint de un creador en especifico
   getCreator(id: string):Observable<any>{
     return this.http.get<any>(`${this.BASE_URL}/creators/${id}${this.HEADER}`);
   }
 
+  // Endpoint de todos los comics de un creador especifico
   getCreatorComics(id: string):Observable<any>{
     return this.http.get<any>(`${this.BASE_URL}/creators/${id}/comics${this.HEADER}`);
   }
 
+  // Endpoint de todas las series de un creador especifico
   getCreatorSeries(id: string):Observable<any>{
     return this.http.get<any>(`${this.BASE_URL}/creators/${id}/series${this.HEADER}`);
   }

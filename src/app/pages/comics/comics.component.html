@@ -21,18 +21,61 @@
   </div>
   <hr>
 
+  <nav class="navbar">
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search character" aria-label="Search" #txtSearch (keyup)="onSearchCharacter(txtSearch.value)">      
+    </form>
+
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <button class="page-link" (click)="orderDate()">Order Date</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="orderPrice()">Order price</button>
+      </li>
+    </ul>
+
+
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <button class="page-link" (click)="offtenPrevious()" [disabled] =" offten === 0">Previous</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="offtenNext()" >Next</button>
+      </li>
+    </ul>
+  </nav>
+
   <div class="container">
     <div class="row">
-      <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let comic of allComics">
+      <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let comics of allComics">
 
         <div class="card">
-          <img class="card-img-top" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}">
+          <img class="card-img-top" src="{{comics.thumbnail.path}}.{{comics.thumbnail.extension}}">
           <div class="card-body">
-            <h5 class="card-title">{{comic.name}}</h5>
-            <!-- <p class="card-text">Comics where appear: {{comic.comics.available}}</p> -->
-            <!-- <p class="card-text">Comics where series: {{comic.series.available}}</p> -->
-            <div class="card text-end">
-              <button (click)="viewDetail(comic.id)" type="button" class="btn btn-outline-primary btn-block">
+            <h5 class="card-title text-center">{{comics.title}}</h5>
+          </div>
+
+          <ul class="list-group list-group-flush">
+
+            <span *ngFor="let creator of comics.creators.items; index as i">
+              <li class="list-group-item" *ngIf="creator.role == 'writer'">
+                Writer: {{creator.name}}
+              </li>
+            </span>
+
+            <li class="list-group-item">Price: {{comics.prices[0].price}}$</li>
+
+            <span *ngIf="comics.description === null">
+              <li class="list-group-item">Description: Not available</li>              
+            </span>
+            <span *ngIf="comics.description !== null">
+              <li class="list-group-item">Description: {{comics.description}}</li>
+            </span>
+
+          </ul>
+            <div class="card text-end p-2">
+              <button (click)="viewDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
                 Detail
               </button>
             </div>
@@ -41,7 +84,17 @@
 
       </div>
     </div>
-  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <button class="page-link" (click)="offtenPrevious()">Previous</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="offtenNext()" >Next</button>
+      </li>
+    </ul>
+  </nav>
 
 
 </section>

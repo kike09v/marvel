@@ -104,8 +104,19 @@
           <img class="card-img-top" src="{{comics.thumbnail.path}}.{{comics.thumbnail.extension}}">
 
           <div class="card-body">
-            <h5 class="card-title text-center">{{comics.name}}</h5>
+            <h5 class="card-title text-center">{{comics.title}}</h5>
           </div>
+
+          <ul class="list-group list-group-flush">
+
+            <span *ngFor="let item of comics.creators.items">
+              <li class="list-group-item" *ngIf="item.name === creator['fullName']">
+                {{item.name}}, Role: {{item.role}}
+              </li>
+            </span>
+
+            <li class="list-group-item">Price: {{comics.prices[0].price}}$</li>
+          </ul>
 
           <div class="card text-end p-2">
             <button (click)="viewComicsDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
@@ -129,11 +140,24 @@
           <img class="card-img-top" src="{{serie.thumbnail.path}}.{{serie.thumbnail.extension}}">
 
           <div class="card-body">
-            <h5 class="card-title text-center">{{serie.name}}</h5>
+            <h5 class="card-title text-center">{{serie.title}}</h5>
           </div>
 
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Type: {{serie.type}}</li>
+            <li class="list-group-item">Rating: {{serie.rating}}</li>
+
+            <span *ngFor="let item of serie.creators.items">
+              <li class="list-group-item" *ngIf="item.name === creator['fullName']">
+                {{item.name}}, Role: {{item.role}}
+              </li>
+            </span>
+
+          </ul>
+
+
           <div class="card text-end p-2">
-            <button (click)="viewDetailCharacter(serie.id)" type="button" class="btn btn-outline-primary btn-block">
+            <button (click)="viewSerieDetail(serie.id)" type="button" class="btn btn-outline-primary btn-block">
               Detail character
             </button>
           </div>

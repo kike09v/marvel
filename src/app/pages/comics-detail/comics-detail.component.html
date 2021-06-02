@@ -37,6 +37,8 @@
       <p class="text">
         {{comics['description']}}
       </p>
+
+      <p class="text">Price: {{comics['prices'][0]['price']}}$</p>
     </div>
   </div>
 
@@ -72,7 +74,11 @@
 
     <div class="card" style="width: 18rem;">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let creator of comicsCreators">{{creator.fullName}}</li>
+        <span *ngFor="let creator of comics['creators']['items']">
+          <a style="cursor: pointer;" (click)="viewCreator(creator.resourceURI)">
+            <li class="list-group-item">{{creator.name}} Role: {{creator.role}} </li>
+          </a>
+        </span>
       </ul>
     </div>
   </div>
