@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CreatorsService } from '../../services/creators.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-creator-detail',
@@ -20,6 +22,7 @@ export class CreatorDetailComponent implements OnInit {
   constructor( 
     private creatorsService:CreatorsService,
     private activatedRoute: ActivatedRoute,
+    private router:Router
     ) { 
     this.activatedRoute.params.subscribe( params =>{ this.id = params['id'];})
     this.loading = true;    
@@ -57,6 +60,10 @@ export class CreatorDetailComponent implements OnInit {
       console.log(this.CreatorSeries);
           
     }); 
+  }
+
+  viewComicsDetail(id: string){
+    this.router.navigate(['/comics', id]);    
   }
 
 

@@ -1,0 +1,185 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<section *ngIf="!loading">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Search</h1>
+      </div>
+      <div class="col-sm-6 d-flex justify-content-end">
+        <nav
+          style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+          aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="decorationLink" [routerLink]="['']">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Search</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+          aria-expanded="true" aria-controls="collapseOne">
+          Characters results
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+
+          <h2 *ngIf="characters == 0">
+            Without results
+          </h2>
+
+          <div class="row">
+            <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let character of characters">
+
+              <div class="card">
+                <img class="card-img-top" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}">
+
+                <div class="card-body">
+                  <h5 class="card-title text-center">{{character.name}}</h5>
+                </div>
+
+                <div class="card text-end p-2">
+                  <button (click)="viewDetailCharacter(character.id)" type="button"
+                    class="btn btn-outline-primary btn-block">
+                    Detail character
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+          aria-expanded="true" aria-controls="collapseTwo">
+          Comics results
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+
+          <h2 *ngIf="allComics == 0">
+            Without results
+          </h2>
+
+          <div class="row">
+            <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let comics of allComics">
+
+              <div class="card">
+                <img class="card-img-top" src="{{comics.thumbnail.path}}.{{comics.thumbnail.extension}}">
+
+                <div class="card-body">
+                  <h5 class="card-title text-center">{{comics.title}}</h5>
+                </div>
+
+                <div class="card text-end p-2">
+                  <button (click)="viewDetailComics(comics.id)" type="button"
+                    class="btn btn-outline-primary btn-block">
+                    Detail comics
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+          aria-expanded="true" aria-controls="collapseThree">
+          Creators results
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+
+          <h2 *ngIf="creators == 0">
+            Without results
+          </h2>
+
+          <div class="row">
+            <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let creator of creators">
+
+              <div class="card">
+                <img class="card-img-top" src="{{creator.thumbnail.path}}.{{creator.thumbnail.extension}}">
+
+                <div class="card-body">
+                  <h5 class="card-title text-center">{{creator.fullName}}</h5>
+                </div>
+
+                <div class="card text-end p-2">
+                  <button (click)="viewDetailCreators(creator.id)" type="button"
+                    class="btn btn-outline-primary btn-block">
+                    Detail creators
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFour">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+          aria-expanded="true" aria-controls="collapseFour">
+          Series results
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+
+          <h2 *ngIf="series == 0">
+            Without results
+          </h2>
+
+          <div class="row">
+            <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let serie of series">
+
+              <div class="card">
+                <img class="card-img-top" src="{{serie.thumbnail.path}}.{{serie.thumbnail.extension}}">
+
+                <div class="card-body">
+                  <h5 class="card-title text-center">{{serie.title}}</h5>
+                </div>
+
+                <div class="card text-end p-2">
+                  <button (click)="viewDetailSerie(serie.id)" type="button"
+                    class="btn btn-outline-primary btn-block">
+                    Detail Series
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>

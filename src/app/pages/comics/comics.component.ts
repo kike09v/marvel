@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 export class ComicsComponent implements OnInit {
 
   allComics: Observable<any>;
+  offten: number = 0;
+  name:string = '';
   loading: boolean;
 
   constructor(
@@ -22,11 +24,11 @@ export class ComicsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getAllComics();
+    this.getAllComics(this.offten, this.name);
   }
 
-  getAllComics(){
-    this.comicsService.getAllComics().subscribe(data =>{
+  getAllComics(offten, name){
+    this.comicsService.getAllComics(offten, name).subscribe(data =>{
       this.allComics = (data as any).data.results;
       console.log(this.allComics);
       this.loading = false;

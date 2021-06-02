@@ -15,8 +15,13 @@ export class CreatorsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllCreators():Observable<any>{
-    return this.http.get<any>(`${this.BASE_URL}/creators${this.HEADER}`);
+  getAllCreators(offset:string, name:string):Observable<any>{
+    if (name === '') {
+      return this.http.get<any>(`${this.BASE_URL}/creators${this.HEADER}&limit=20&offset=${offset}`);
+    } else {
+      return this.http.get<any>(`${this.BASE_URL}/creators${this.HEADER}&nameStartsWith=${name}&limit=20&offset=${offset}`);
+      
+    }
   }
 
   getCreator(id: string):Observable<any>{

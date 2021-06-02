@@ -15,8 +15,12 @@ export class ComicsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllComics():Observable<any>{
-    return this.http.get<any>(`${this.BASE_URL}/comics${this.HEADER}`);
+  getAllComics(offset:string, name:string):Observable<any>{
+    if (name === '') {
+    return this.http.get<any>(`${this.BASE_URL}/comics${this.HEADER}&limit=20&offset=${offset}`);      
+    } else {
+    return this.http.get<any>(`${this.BASE_URL}/comics${this.HEADER}&titleStartsWith=${name}&limit=20&offset=${offset}`);      
+    }
   }
 
   getComics(id: string):Observable<any>{

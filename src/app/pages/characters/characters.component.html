@@ -21,24 +21,50 @@
   <hr>
 
 
+  <nav class="navbar">
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search character" aria-label="Search" #txtSearch (keyup)="onSearchCharacter(txtSearch.value)">      
+    </form>
+
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <button class="page-link" (click)="offtenPrevious()" [disabled] =" offten === 0">Previous</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="offtenNext()" >Next</button>
+      </li>
+    </ul>
+  </nav>
+
   <div class="row">
     <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let character of allCharacters">
-
-      <div class="card">
-        <img class="card-img-top" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}">
-        <div class="card-body">
-          <h5 class="card-title">{{character.name}}</h5>
-          <p class="card-text">Comics where appear: {{character.comics.available}}</p>
-          <p class="card-text">Comics where series: {{character.series.available}}</p>
-          <div class="card text-end">
-            <button (click)="viewDetail(character.id)" type="button" class="btn btn-outline-primary btn-block">
-              Detail
-            </button>
+        
+        <div class="card">
+          <img class="card-img-top" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}">
+          <div class="card-body">
+            <h5 class="card-title">{{character.name}}</h5>
+            <p class="card-text">Comics where appear: {{character.comics.available}}</p>
+            <p class="card-text">Comics where series: {{character.series.available}}</p>
+            <div class="card text-end">
+              <button (click)="viewDetail(character.id)" type="button" class="btn btn-outline-primary btn-block">
+                Detail
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-
+   
     </div>
   </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <button class="page-link" (click)="offtenPrevious()">Previous</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="offtenNext()" >Next</button>
+      </li>
+    </ul>
+  </nav>
 
 </section>

@@ -16,6 +16,8 @@ import { CreatorDetailComponent } from './creator-detail/creator-detail.componen
 import { SeriesComponent } from './series/series.component';
 import { SerieDetailComponent } from './serie-detail/serie-detail.component';
 
+import { SearchComponent } from './search/search.component';
+
 
 
 const routes: Routes = [
@@ -36,6 +38,8 @@ const routes: Routes = [
 
             { path: 'series', component: SeriesComponent },     
             { path: 'serie/:id', component: SerieDetailComponent },  
+
+            { path: 'search/:text', component: SearchComponent },
         ]
     },
 ];

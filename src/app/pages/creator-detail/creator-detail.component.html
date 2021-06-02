@@ -1,1 +1,146 @@
-<p>creator-detail works!</p>
+<app-loading *ngIf="loading"></app-loading>
+
+<section *ngIf="!loading">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{creator['fullName']}}</h1>
+      </div>
+      <div class="col-sm-6 d-flex justify-content-end">
+        <nav
+          style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+          aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="decorationLink" [routerLink]="['']">Home</a></li>
+            <li class="breadcrumb-item"><a class="decorationLink" [routerLink]="['/creators']">Creators</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{creator['fullName']}}</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+
+  <div class="row">
+
+    <div class="col-md-4">
+
+      <img class="img-fluid" src="{{creator['thumbnail']['path']}}.{{creator['thumbnail']['extension']}}">
+
+      <br><br>
+    </div>
+
+
+    <div class="col-md-8">
+      <h3 class="textColor">Description</h3>
+      <hr>
+
+      <p class="text">
+        <span class="textColor">
+          - FirstName:
+        </span>
+        <span *ngIf="creator.firstName === ''">
+          not available
+        </span>
+        <span *ngIf="creator.firstName !== ''">
+          {{creator.firstName}}
+        </span>
+      </p>
+
+      <p class="text">
+        <span class="textColor">
+          - MiddleName:
+        </span>
+
+        <span *ngIf="creator.middleName === ''">
+          Not available
+        </span>
+
+        <span *ngIf="creator.middleName !== ''">
+          {{creator.middleName}}
+        </span>
+      </p>
+
+      <p class="text">
+        <span class="textColor">
+          - lastName:
+        </span>
+
+        <span *ngIf="creator.lastName === ''">
+          Not available
+        </span>
+
+        <span *ngIf="creator.lastName !== ''">
+          {{creator.lastName}}
+        </span>
+      </p>
+
+      <p class="text">
+        <span class="textColor">
+          - FullName:
+        </span>
+
+        <span *ngIf="creator.fullName === ''">
+          Not available
+        </span>
+
+        <span *ngIf="creator.fullName !== ''">
+          {{creator.fullName}}
+        </span>
+      </p>
+
+    </div>
+  </div>
+
+  <div class="col-12">
+    <h3 class="textColor">Comics in which he participated</h3>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let comics of creatorComics">
+
+        <div class="card">
+          <img class="card-img-top" src="{{comics.thumbnail.path}}.{{comics.thumbnail.extension}}">
+
+          <div class="card-body">
+            <h5 class="card-title text-center">{{comics.name}}</h5>
+          </div>
+
+          <div class="card text-end p-2">
+            <button (click)="viewComicsDetail(comics.id)" type="button" class="btn btn-outline-primary btn-block">
+              Detail comics
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-12">
+    <h3 class="textColor">Series in which he participated</h3>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-4 col-lg-3 col-sm-6 col-12 pb-4 pt-4" *ngFor="let serie of CreatorSeries">
+
+        <div class="card">
+          <img class="card-img-top" src="{{serie.thumbnail.path}}.{{serie.thumbnail.extension}}">
+
+          <div class="card-body">
+            <h5 class="card-title text-center">{{serie.name}}</h5>
+          </div>
+
+          <div class="card text-end p-2">
+            <button (click)="viewDetailCharacter(serie.id)" type="button" class="btn btn-outline-primary btn-block">
+              Detail character
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>

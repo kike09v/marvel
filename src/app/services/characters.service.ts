@@ -16,8 +16,12 @@ export class CharactersService {
   
   constructor(private http: HttpClient) { }
 
-  getAllCharacters():Observable<any>{
-    return this.http.get<any>(`${this.BASE_URL}/characters${this.HEADER}`);
+  getAllCharacters(offset:string, name:string):Observable<any>{
+    if (name === '') {      
+      return this.http.get<any>(`${this.BASE_URL}/characters${this.HEADER}&limit=20&offset=${offset}`);
+    }else{
+      return this.http.get<any>(`${this.BASE_URL}/characters${this.HEADER}&nameStartsWith=${name}&limit=20&offset=${offset}`);
+    }
   }
 
   getCharacter(id: string):Observable<any>{

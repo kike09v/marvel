@@ -16,6 +16,7 @@ import { CharacterDetailComponent } from './character-detail/character-detail.co
 import { ComicsDetailComponent } from './comics-detail/comics-detail.component';
 import { CreatorDetailComponent } from './creator-detail/creator-detail.component';
 import { SerieDetailComponent } from './serie-detail/serie-detail.component';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { SerieDetailComponent } from './serie-detail/serie-detail.component';
     ComicsDetailComponent,
     CreatorDetailComponent,
     SerieDetailComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,

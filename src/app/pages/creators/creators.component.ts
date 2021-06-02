@@ -12,6 +12,8 @@ import { CreatorsService } from '../../services/creators.service';
 export class CreatorsComponent implements OnInit {
 
   allCreators: Observable<any>;
+  offten:number =0;  
+  txt:string = '';
   loading: boolean;
 
   constructor(
@@ -22,11 +24,11 @@ export class CreatorsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllCreators();
+    this.getAllCreators(this.offten, this.txt);
   }
 
-  getAllCreators(){
-    this.creatorsService.getAllCreators().subscribe(data =>{
+  getAllCreators(offten, txt){
+    this.creatorsService.getAllCreators(offten, txt).subscribe(data =>{
       this.allCreators = (data as any).data.results;
       console.log(this.allCreators); 
       this.loading = false;       

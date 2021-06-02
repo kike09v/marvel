@@ -13,6 +13,9 @@ export class CharactersComponent implements OnInit {
 
   allCharacters: Observable<any>;
   loading: boolean;
+  offten: number = 0;
+  name:string = '';
+  search:string = '';
 
   constructor(
     private charactersService:CharactersService,
@@ -23,13 +26,12 @@ export class CharactersComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.getAllCharacters();
-
+    this.getAllCharacters(this.offten, this.name);
   }
   
-  getAllCharacters(){
+  getAllCharacters(offten, name){
     
-    this.charactersService.getAllCharacters().subscribe(data =>{
+    this.charactersService.getAllCharacters(offten, name).subscribe(data =>{
       this.allCharacters = (data as any).data.results;
       console.log(this.allCharacters);      
       this.loading = false;
@@ -39,6 +41,31 @@ export class CharactersComponent implements OnInit {
 
   viewDetail(id: string){
     this.router.navigate(['/character', id]);    
+  }
+
+  offtenNext(){
+
+    this.loading = true;
+    this.offten += 20;
+    this.getAllCharacters(this.offten, this.name);
+    this.loading = false;
+
+    
+  }
+
+  offtenPrevious(){
+    if (this.offten > 0) {
+      this.loading = true;
+      this.offten -= 20;
+      this.getAllCharacters(this.offten, this.name);
+      this.loading = false;
+    }    
+  }
+
+  onSearchCharacter(search:string){
+    this.offten = 0;
+    this.search = search;
+    this.getAllCharacters(this.offten, this.search);    
   }
 
 

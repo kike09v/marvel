@@ -13,6 +13,8 @@ export class SeriesComponent implements OnInit {
 
   allseries: Observable<any>;
   loading:boolean;
+  txt:string = '';
+  offten:number = 0; 
 
   constructor(
     private seriesService:SeriesService,
@@ -22,11 +24,11 @@ export class SeriesComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getAllSeries();
+    this.getAllSeries(this.offten, this.txt);
   }
 
-  getAllSeries(){
-    this.seriesService.getAllSeries().subscribe(data =>{
+  getAllSeries(offten, txt){
+    this.seriesService.getAllSeries(offten, txt).subscribe(data =>{
       this.allseries = (data as any).data.results;
       console.log(this.allseries);     
       this.loading = false;

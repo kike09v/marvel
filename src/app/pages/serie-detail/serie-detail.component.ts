@@ -24,10 +24,9 @@ export class SerieDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
 
   ) { 
-    this.activatedRoute.params.subscribe( params =>{ this.id = params['id'];})
-    console.log(this.id);
-    
     this.loading = true; 
+    this.activatedRoute.params.subscribe( params =>{ this.id = params['id'];})
+    
   }
 
   ngOnInit(): void {
@@ -38,19 +37,28 @@ export class SerieDetailComponent implements OnInit {
   }
 
   getSerie(id:string){
-
+    this.seriesService.getSerie(id).subscribe(data =>{
+      this.serie = (data as any).data.results[0];
+      this.loading = false;      
+    });
   }
 
   getSerieCharacters(id:string){
-
-  }
+    this.seriesService.getSerieCharacters(id).subscribe(data =>{
+      this.serieCharacter = (data as any).data.results;
+    });
+  }  
 
   getSerieComics(id:string){
-
+    this.seriesService.getSerieComics(id).subscribe(data =>{
+      this.serieComics = (data as any).data.results;
+    });
   }
 
   getSerieCreators(id:string){
-
+    this.seriesService.getSerieCreators(id).subscribe(data =>{
+      this.serieCreators = (data as any).data.results;
+    });
   }
 
 
